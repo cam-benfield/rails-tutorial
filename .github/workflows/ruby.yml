@@ -15,11 +15,12 @@ on:
 
 jobs:
   test:
-
-    runs-on: ubuntu-latest
+    name: Test on ${{matrix.ruby-version}} and ${{matrix.os}}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         ruby-version: ['2.6', '2.7', '3.0']
+        os: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -31,5 +32,9 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        
+    - name: Install Rails
+      run: gem install rails
+      
     - name: Run tests
       run: bundle exec rake
