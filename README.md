@@ -1,1 +1,2 @@
-# rails-tutorial
+# Ruby on Rails
+## Author: Cam Benfield
